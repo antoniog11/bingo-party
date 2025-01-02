@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    {% block title %}
+    Registration 
+    {% endblock %}
+{% endblock %}
+
+{%block body%}
+    <h1 style="padding-top: 100px;"></h1>
+    <form action="/register" method="post">
+        <label for="player_name"> <h1 style="text-align: center;"><span style="font-size: 30px; color: blue; font-weight: bold; background-color: yellow;">What's your name?</span></h1></label>
+        <input type="text" id="player_name" name="player_name" style="height:30px;font-size:14pt;" required>
+        <button type="submit" style="font-size: 24px; margin-top: 30px;">Spiel beginnen</button>
+    </form>
+{% endblock %}

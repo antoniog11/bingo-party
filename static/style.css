@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: auto;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-image: url("./background2.jpeg");
+    background-size: contain;
+    background-repeat: repeat; 
+}
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+.bingo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 0px;
+    border: 0px solid#4caf50; /* Green border */
+    border-radius: 2px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.bingo-cell {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgba(249, 249, 249, 0.9); /* Semi-transparent background */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 9px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.bingo-cell:hover {
+    background-color: #e0f7fa; /* Light teal on hover */
+    transform: scale(1.05);
+}
+.bingo-cell.selected {
+    background-color: #4caf50; /* Green for selected */
+    color: white;
+    border-color: #388e3c;
+}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    {% block title %}
+    Dashboard 
+    {% endblock %}
+{% endblock %}
+
+{%block body %}
+    <h1>Bingo Dashboard: Number of Players = {{players|length}}</h1>
+    {% for player_name, data in players.items() %}
+        <div class="player-section">
+            <h2>Player: {{ player_name }}</h2>
+            <div class="bingo-grid">
+                {% for row in data.board %}
+                    {% for task in row %}
+                        <div class="bingo-cell {% if task in data.selected_tasks %}selected{% endif %}">
+                            {{ task }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

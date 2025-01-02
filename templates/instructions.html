@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    {% block title %}
+    Instructions
+    {% endblock %}
+{% endblock %}
+
+
+{% block body%}
+    <h1 style="text-align: center; padding-top: 100px;"><span style="font-size: 35px; color: blue; font-weight: bold; background-color: yellow;"> Willkommen bei Silvester Party Bingo! </span></h1>
+
+    <h3 style="text-align: center;"><span style="font-size: 20px; color: blue; font-weight: bold; background-color: yellow;"> Bitte lesen Sie die folgenden Anweisungen, bevor Sie fortfahren! </span></h3>
+
+    <p style="text-align: center;"><span style="font-size: 15px; color: blue; font-weight: bold; background-color: yellow;">1) Sie können auf ein Feld klicken, um es auszuwählen. Sie können es wieder anklicken, um es abzuwählen. </span></p>
+    <p style="text-align: center;"><span style="font-size: 15px; color: blue; font-weight: bold; background-color: yellow;">2) Sie gewinnen, wenn Sie 5 Quadrate in einer Reihe haben (horizontal, vertikal oder diagonal).  </span></p>
+    <p style="text-align: center;"><span style="font-size: 15px; color: blue; font-weight: bold; background-color: yellow;">3) Möglicherweise müssen Sie das Bild vergrößern oder verkleinern, um das gesamte 5x5-Gitter zu sehen. </span></p>
+    <form action="/register" method="get">
+        <button type="submit" style="font-size: 24px;">Weiter</button>
+    </form>
+{% endblock %}

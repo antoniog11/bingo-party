@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    {% block title %}
+    Bingo board 
+    {% endblock %}
+{% endblock %}
+
+{%block body %} 
+    <h1 style="text-align: center;"><span style="font-size: 40px; color: blue; font-weight: bold; background-color: yellow;">{{ player_name }}</span></h1>
+
+    <div class="bingo-grid">
+        {% for row in tasks %}
+            {% for task in row %}
+                <div class="bingo-cell" data-task="{{ task }}">{{ task }}</div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        const playerName = "{{ player_name }}";
+        const cells = document.querySelectorAll(".bingo-cell");
+        const socket = io();
+
+        // Load selections from the server
+        const loadSelections = () => {
+            fetch(`/select`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ player_name: playerName, action: "load" }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                data.selected.forEach(task => {
+                    document.querySelector(`[data-task="${task}"]`).classList.add("selected");
+                });
+            });
+        };
+
+        // Save selections and check for bingo
+        const saveSelections = (task) => {
+                fetch('/select', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ player_name: playerName, task })
+                })
+                .then(response => response.json())
+            };
+        
+         // Listen for winner announcements
+        socket.on('winner_announcement', (data) => {
+                if(data.winner === playerName) {
+                    alert("Glückwunsch, Sie haben Bingo! Sie sind fertig mit dem Spiel.");
+                }
+                else
+                alert(`${data.winner} won Bingo!`);
+        });
+
+        // Event listener for cell clicks
+        cells.forEach(cell => {
+            cell.addEventListener("click", () => {
+                cell.classList.toggle('selected');
+                saveSelections(cell.dataset.task);
+            });
+        });
+
+        // Initialize board
+        loadSelections();
+    </script>
+{% endblock %}
