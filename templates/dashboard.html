@@ -8,6 +8,12 @@
 {% endblock %}
 
 {%block body %}
+
+<!-- Game Controls -->
+<form action="/reset" method="post">
+    <button type="submit">Reset Game</button>
+</form>
+
     <h1>Bingo Dashboard: Number of Players = {{players|length}}</h1>
     {% for player_name, data in players.items() %}
         <div class="player-section">

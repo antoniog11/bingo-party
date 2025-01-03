@@ -34,7 +34,7 @@ bingo_tasks = [
     "Share something positive with someone",
     "Sketch or doodle for 1 minute"
 ]
-# Store player data: {player_name: {"board": board, "selected_tasks": []}}
+# Store player data: {player_name: {"board": board, "selected_tasks": [], "has_won": False}}
 players = {}
 
 
@@ -70,6 +70,7 @@ def has_bingo(board, selected_tasks):
 
 
 @app.route('/')
+@app.route('/instructions')
 def instructions():
     return render_template("instructions.html")
 
@@ -127,6 +128,18 @@ def select_task():
     return jsonify({
         "selected": players[player_name]["selected_tasks"],
     })
+
+
+@app.route('/reset', methods=['POST'])
+def reset():
+    global winner
+    winner = None
+    for player_name in players:
+        players[player_name]["selected_tasks"] = []
+        players[player_name]["has_won"] = False
+        players[player_name]["board"] = generate_shuffled_board()
+    socketio.emit('reset')
+    return redirect(url_for('dashboard', players=players))
 
 
 @app.route('/dashboard')

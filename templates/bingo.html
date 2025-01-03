@@ -57,6 +57,12 @@
                 alert(`${data.winner} won Bingo!`);
         });
 
+        // Listen for game reset
+        socket.on('reset', (data) =>{
+            alert("Das Spiel wurde zurückgesetzt.");
+            location.reload();
+        })
+
         // Event listener for cell clicks
         cells.forEach(cell => {
             cell.addEventListener("click", () => {
