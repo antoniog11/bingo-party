@@ -1,3 +1,4 @@
 # Locally hosted custom bingo for party
 
-This is a bingo party game I created for a New Year's Eve party. It is locally hosted on a computer and allows you to create custom bingo tasks that everyone can access from a computer connected to a local wifi network that everyone can access.
+This Bingo Party game is a web application designed to spice up your events with a fully customizable bingo experience. Locally hosted on a computer, this game allows you to create personalized bingo tasks that anyone connected to the same network can complete. Players connect to a host computer through any device connected to your local Wi-Fi network. Every participant gets a unique bingo board featuring your 24 custom tasks, randomly arranged, and a free space in the center. This game is built using Python and Flask and requires knowledge of running Flask applications.
+
